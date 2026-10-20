@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Reportes de ejecucion local
+security-report.json
+security-report.html
+*.html
+*.json

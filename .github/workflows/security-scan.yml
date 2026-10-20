@@ -1,0 +1,35 @@
+name: SecGuard Security Audit
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install SecGuard
+        run: pip install .
+
+      - name: Run Secret & Credential Scan
+        run: |
+          secguard scan . --fail-on-critical --json security-report.json --html security-report.html
+
+      - name: Upload Security Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: security-report
+          path: |
+            security-report.json
+            security-report.html

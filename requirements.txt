@@ -1,0 +1,3 @@
+# SecGuard no requiere dependencias pesadas de terceros.
+# Utiliza la libreria estandar de Python (re, math, urllib, argparse, ssl)
+# para maxima portabilidad, velocidad y cero vulnerabilidades de cadena de suministro.
